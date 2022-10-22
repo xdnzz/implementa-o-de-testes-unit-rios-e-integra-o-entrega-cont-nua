@@ -1,20 +1,40 @@
 import { FlagCard } from "./components/FlagCard/FlagCard"
 import { Header } from "./components/Header/Header"
+import axios from 'axios';
+import { useEffect, useState } from "react";
+import { iCountriesProps } from "./components/types/Types";
+
+
 
 function App() {
 
+  const [dataStates, setDataStates] = useState<iCountriesProps[]>([])
+
+
+  useEffect(()=>{
+    async function getCountriesData(){
+      const res = await axios.get('https://restcountries.com/v3.1/all')
+      const {data} = res;
+      setDataStates(data)
+    }
+    getCountriesData()
+  }, [])
+
   return (
-    <main className="w-[100%] bg-slate-800 h-[100%]">
+    <main className="w-full h-full flex justify-center flex-col">
       <Header />
-      <div className="w-[90%] flex flex-wrap justify-center justify-center">
+      <div className=" flex flex-wrap justify-center">
+       {dataStates.map(item => (
         <FlagCard
-          capital="Capital"
-          flag="https://www.holandaevoce.nl/binaries/large/content/gallery/nl-netherlandsandyou/content-afbeeldingen/vlag-nederland.png"
-          name="Holanda"
-          population="2"
-          region="sei la porra"
-        />
-     
+        key={item.name.common}
+        capital={item.capital}
+        flag={item.flags.svg}
+        name={item.name.common}
+        population={item.population}
+        region={item.region}
+      />
+       ))}
+       
       </div>
     </main>
   )
