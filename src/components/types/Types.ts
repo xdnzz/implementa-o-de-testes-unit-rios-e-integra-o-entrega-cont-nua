@@ -15,5 +15,6 @@ export interface iCountriesProps {
   region:string;
   capital:string;
   flags?:IImagesCountriesProps
+  queryKey?: any;
 
 }

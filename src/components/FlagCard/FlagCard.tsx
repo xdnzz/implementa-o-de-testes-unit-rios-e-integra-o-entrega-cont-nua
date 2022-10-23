@@ -1,7 +1,7 @@
 
  interface IRequestApiCountryProps {
     name: string;
-    flag:string;
+    flag:string | undefined;
     population: string;
     region:string;
     capital: string
