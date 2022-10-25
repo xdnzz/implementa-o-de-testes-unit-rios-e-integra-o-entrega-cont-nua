@@ -1,11 +1,7 @@
-import { FlagCard } from "./components/FlagCard/FlagCard";
 import { Header } from "./components/Header/Header";
-import axios from 'axios';
-import { useEffect, useState } from "react";
-import { iCountriesProps } from "./components/types/Types";
 import { QueryClientProvider, QueryClient } from 'react-query';
-import {useQuery} from 'react-query';
 import { Index } from "./components/pages";
+import {ReactQueryDevtools} from 'react-query/devtools'
 
 
 const queryClient = new QueryClient();
@@ -23,6 +19,7 @@ function App() {
         <Header />
         <Index/>
       </main>
+      <ReactQueryDevtools initialIsOpen={false} position='bottom-right'/>
     </QueryClientProvider>
   )
 }

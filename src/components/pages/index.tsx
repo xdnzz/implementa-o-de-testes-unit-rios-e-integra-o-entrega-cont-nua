@@ -5,13 +5,15 @@ import { iCountriesProps } from "../types/Types";
 
 export function Index() {
 
-    const { isLoading, data } = useQuery('CountriesDataFetched', () => {
-        return axios.get('https://restcountries.com/v3.1/all')
-    })
+    const fetchDataFromApi = () => {return axios.get('https://restcountries.com/v3.1/all')}
+    const { isLoading, data:APiResData, isError, error } = useQuery('CountriesDataFetched', fetchDataFromApi)
 
+    if(isError){
+      return <h1>Falha ao carregar dados, tente novamente mais tarde.</h1>
+    }
     return (
         <div className=" flex flex-wrap justify-center">
-          {isLoading? <h1 className="text-7xl">Fething data</h1> : data?.data.map((item:iCountriesProps) => {
+          {isLoading? <h1 className="text-7xl">Fething data</h1> : APiResData?.data.map((item:iCountriesProps) => {
             return (
                 <FlagCard
                 capital={item.capital}
