@@ -1,6 +1,6 @@
 import { Header } from "./components/Header/Header";
 import { QueryClientProvider, QueryClient } from 'react-query';
-import { Index } from "./components/pages";
+import { Index } from "./pages";
 import {ReactQueryDevtools} from 'react-query/devtools'
 
 
