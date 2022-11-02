@@ -4,9 +4,11 @@ import { ErrorHandler } from "../../components/ErrorHandler/ErrorHandler";
 import { FlagCard } from "../../components/FlagCard/FlagCard";
 import { iCountriesProps } from "../../components/types/Types";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate  } from "react-router-dom";
 
 export function Index() {
+
+  const navigate = useNavigate();
 
   const [inputdata, setInputData] = useState('');
   const onError = () => { console.log('Perform sideeffect after finding error') };
@@ -14,6 +16,11 @@ export function Index() {
 
   if (isError) {
     return <ErrorHandler />
+  }
+
+  function handleSingleCountry(){
+    localStorage.setItem('country',inputdata)
+    navigate('/test')
   }
 
   return (
@@ -26,8 +33,8 @@ export function Index() {
             onChange={(e) => setInputData(e.target.value)}
             value={inputdata}
           />
-          <button onClick={() => { }}>Call Api Data</button>
-          <Link to="test">Ir para teste</Link>
+          {/* <button onClick={() => { }}>Call Api Data</button> */}
+          <button onClick={handleSingleCountry}>Buscar</button>
         </div>
         {isLoading ? <h1 className="text-7xl">Fething data</h1> : APiResData?.data.map((item: iCountriesProps) => {
           return (

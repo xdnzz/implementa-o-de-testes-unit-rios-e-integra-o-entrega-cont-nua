@@ -18,3 +18,35 @@ export interface iCountriesProps {
   queryKey?: any;
 
 }
+
+interface ISingleCountryFlagsImage {
+  png: string;
+  svg: string;
+}
+
+interface ISingleCountryNames {
+  common: string;
+  official: string;
+}
+
+interface ISingleCountryCurrencies {
+  name: string;
+  symbol: string;
+}
+
+interface ISingleCountryLanguages {
+  por: {}
+}
+
+export interface ISingleCountryProps {
+  flags: ISingleCountryFlagsImage;
+  common: string;
+  nativeName: ISingleCountryNames;
+  population: number;
+  region: string;
+  subregion: string;
+  capital: [];
+  currencies: ISingleCountryCurrencies;
+  languages: ISingleCountryLanguages;
+  borders: [];
+}
